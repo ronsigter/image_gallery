@@ -6,20 +6,26 @@ defmodule ImageGalleryWeb.GraphQL.Schema do
     Queries.AlbumQueries
   }
 
+  alias ImageGalleryWeb.GraphQL.Photos.{
+    Types.PhotoTypes,
+    Queries.PhotoQueries
+  }
+
 
   # Types imports
   import_types(AlbumTypes)
-
+  import_types(PhotoTypes)
 
   # Queries imports
   import_types(AlbumQueries)
+  import_types(PhotoQueries)
 
   # Mutations imports
 
 
   query do
     import_fields(:album_queries)
-    # import_fields(:list_photos)
+    import_fields(:photo_queries)
     # import_fields(:get_album)
   end
 

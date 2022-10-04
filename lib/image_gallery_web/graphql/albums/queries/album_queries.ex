@@ -5,7 +5,7 @@ defmodule ImageGalleryWeb.GraphQL.Albums.Queries.AlbumQueries do
 
   # temporary. for initial setup only.
   object :album_queries do
-    @desc "List Albums"
+    @desc "List albums"
     field :list_albums, list_of(:album) do
       resolve(&AlbumResolvers.list_albums/2)
     end
