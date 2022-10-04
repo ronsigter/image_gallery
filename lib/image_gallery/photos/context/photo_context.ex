@@ -9,6 +9,11 @@ defmodule ImageGallery.Photos.Context.PhotoContext do
     |> Repo.insert()
   end
 
+  def list_photos() do
+    Photo
+    |> Repo.all()
+  end
+
   def create_changeset(%Photo{} = photo, params) do
     photo
     |> changeset(params)
