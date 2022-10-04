@@ -58,3 +58,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Cors Config
+config :cors_plug,
+  origin: System.get_env("CORS_WHITELISTS") || ["http://localhost:3000"],
+  max_age: 86400,
+  methods: ["POST"]

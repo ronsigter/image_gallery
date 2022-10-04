@@ -47,3 +47,9 @@ config :logger, level: :info
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
+
+# Cors config
+config :cors_plug,
+  origin: System.get_env("CORS_WHITELISTS") |> String.split(","),
+  max_age: 86401,
+  methods: ["POST"]
