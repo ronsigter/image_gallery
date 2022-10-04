@@ -4,6 +4,12 @@ defmodule ImageGallery.Albums.Context.AlbumContext do
   alias ImageGallery.Albums.Album
   alias ImageGallery.Photos
 
+  def get_album(album_id) do
+    Album
+    |> preload(:photos)
+    |> Repo.get(album_id)
+  end
+
   def create_photo_album(album \\ %{}, photo_ids \\ []) do
     case length(photo_ids) != 0 do
       true ->

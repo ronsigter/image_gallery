@@ -24,7 +24,16 @@ defmodule ImageGallery.AlbumsTest do
     end
   end
 
-  describe "Phosot.create_photo_album/2" do
+  describe "Albums.get_album/1" do
+    test "Returns existing album" do
+      params = %{name: "new_album", description: "this is a test album"}
+      {:ok, created_album} = Albums.create_album(params)
+
+      assert created_album = Albums.get_album(created_album.id)
+    end
+  end
+
+  describe "Albums.create_photo_album/2" do
     setup do
       # Generate 5 photos
       photo_ids = Enum.map(1..5, fn x ->
