@@ -5,8 +5,20 @@ defmodule ImageGalleryWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", ImageGalleryWeb do
-    pipe_through :api
+  pipeline :graphql do
+    # plug HqcIdeBackendWeb.CurrentUser
+  end
+
+  scope "/" do
+    pipe_through [:api, :graphql]
+
+    if Mix.env() == :dev do
+      forward "/graphiql",
+              Absinthe.Plug.GraphiQL,
+              schema: ImageGalleryWeb.GraphQL.Schema
+    end
+
+    forward "/graphql", Absinthe.Plug, schema: ImageGalleryWeb.GraphQL.Schema
   end
 
   # Enables LiveDashboard only for development
