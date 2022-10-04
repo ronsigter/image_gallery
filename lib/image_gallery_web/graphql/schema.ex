@@ -26,7 +26,6 @@ defmodule ImageGalleryWeb.GraphQL.Schema do
   query do
     import_fields(:album_queries)
     import_fields(:photo_queries)
-    # import_fields(:get_album)
   end
 
   # mutation do

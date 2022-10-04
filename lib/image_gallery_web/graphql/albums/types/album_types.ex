@@ -5,5 +5,6 @@ defmodule ImageGalleryWeb.GraphQL.Albums.Types.AlbumTypes do
     field :id,   :id
     field :name, :string
     field :description, :string
+    field :photos, list_of(:photo)
   end
 end
