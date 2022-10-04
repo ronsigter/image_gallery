@@ -2,6 +2,22 @@ defmodule ImageGallery.Albums.Context.AlbumContext do
   use ImageGallery, :context
 
   alias ImageGallery.Albums.Album
+  alias ImageGallery.Photos
+
+  def create_photo_album(album \\ %{}, photo_ids \\ []) do
+    case length(photo_ids) != 0 do
+      true ->
+        photos = Photos.list_photos(photo_ids)
+        %Album{}
+        |> create_changeset(album)
+        |> put_assoc(:photos, photos)
+        |> Repo.insert()
+
+      _ ->
+        album
+        |> create_album()
+    end
+  end
 
   def create_album(params \\ %{}) do
     %Album{}

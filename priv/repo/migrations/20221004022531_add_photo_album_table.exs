@@ -2,7 +2,7 @@ defmodule ImageGallery.Repo.Migrations.AddPhotoAlbumTable do
   use Ecto.Migration
 
   def change do
-    create table(:albums_photos) do
+    create table(:albums_photos, primary_key: false) do
       add :album_id, references(:albums)
       add :photo_id, references(:photos)
     end

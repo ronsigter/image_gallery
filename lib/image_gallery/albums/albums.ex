@@ -3,4 +3,5 @@ defmodule ImageGallery.Albums do
 
   defdelegate create_album(params \\ %{}), to: AlbumContext
   defdelegate list_albums(preload \\ []), to: AlbumContext
+  defdelegate create_photo_album(album \\ %{}, photo_ids \\ []), to: AlbumContext
 end
