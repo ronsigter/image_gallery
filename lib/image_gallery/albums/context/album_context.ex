@@ -25,9 +25,9 @@ defmodule ImageGallery.Albums.Context.AlbumContext do
     |> Repo.insert()
   end
 
-  def list_albums(preload) do
+  def list_albums() do
     Album
-    |> preload(^preload)
+    |> preload(:photos)
     |> Repo.all()
   end
 
