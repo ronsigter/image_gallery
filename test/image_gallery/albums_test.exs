@@ -9,4 +9,17 @@ defmodule ImageGallery.AlbumsTest do
       assert {:ok, %Album{}} = Albums.create_album(params)
     end
   end
+
+  describe "Albums.list_albums/1" do
+    test "Returns list of albums" do
+      # Generate 5 albums
+      Enum.each(1..5, fn x ->
+        params = %{name: "new_album_#{x}", description: "test album #{x}"}
+        Albums.create_album(params)
+      end)
+
+      albums = Albums.list_albums()
+      assert length(albums) == 5
+    end
+  end
 end

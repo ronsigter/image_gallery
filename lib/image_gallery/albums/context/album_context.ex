@@ -9,6 +9,12 @@ defmodule ImageGallery.Albums.Context.AlbumContext do
     |> Repo.insert()
   end
 
+  def list_albums(preload) do
+    Album
+    |> preload(^preload)
+    |> Repo.all()
+  end
+
   def create_changeset(%Album{} = album, params) do
     album
     |> changeset(params)
