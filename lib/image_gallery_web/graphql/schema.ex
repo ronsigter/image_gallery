@@ -8,7 +8,8 @@ defmodule ImageGalleryWeb.GraphQL.Schema do
 
   alias ImageGalleryWeb.GraphQL.Photos.{
     Types.PhotoTypes,
-    Queries.PhotoQueries
+    Queries.PhotoQueries,
+    Mutations.PhotoMutations
   }
 
 
@@ -21,6 +22,7 @@ defmodule ImageGalleryWeb.GraphQL.Schema do
   import_types(PhotoQueries)
 
   # Mutations imports
+  import_types(PhotoMutations)
 
 
   query do
@@ -28,7 +30,7 @@ defmodule ImageGalleryWeb.GraphQL.Schema do
     import_fields(:photo_queries)
   end
 
-  # mutation do
-  #   import_fields(:create_photo_album)
-  # end
+  mutation do
+    import_fields(:photo_mutations)
+  end
 end
