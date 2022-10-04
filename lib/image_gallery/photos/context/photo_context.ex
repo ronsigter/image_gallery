@@ -9,9 +9,15 @@ defmodule ImageGallery.Photos.Context.PhotoContext do
     |> Repo.insert()
   end
 
-  def list_photos() do
-    Photo
-    |> Repo.all()
+  def list_photos(project_ids \\ []) when is_list(project_ids) do
+    if length(project_ids) != 0 do
+      Photo
+      |> where([p], p.id in ^project_ids)
+      |> Repo.all()
+    else
+      Photo
+      |> Repo.all
+    end
   end
 
   def create_changeset(%Photo{} = photo, params) do
